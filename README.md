@@ -1,6 +1,6 @@
 # Target-oriented Bayesian optimization strategy 
-A target-oriented Bayesian optimization strategy t-EGO is demonstrated for desining materials with target-specific properties.
+A target-oriented Bayesian optimization strategy, t-EGO, is demonstrated for designing materials with target-specific properties.
 
-In the documents, there are codes provided for t-EGO as well as two other Bayesian optimization strategies.
+The accompanying documentation includes codes for implementing t-EGO, along with two other Bayesian optimization strategies.
 
 
