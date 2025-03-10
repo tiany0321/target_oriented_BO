@@ -199,6 +199,7 @@ plot(bb50[,2],bb50[,3],xaxt="n", yaxt="n",type="l", xlab="x", ylab="y",col=brewe
 ```r
 #dev.off()
 
+####################################EI varies as the iteration
 
 par(mfrow = c(1,3),mai=c(0.07,0.8,0.07,0.05),omi=c(1.5,0.3,1.5,0.1))
 
@@ -215,22 +216,22 @@ text(x = 0.5, y = -0.9, labels = "EGO", cex = 1.4, font=1.7)
 # Plot Gaussian distribution
 sel=bb0[which(bb0[,3]==max(bb0[,3])),2]
 sel.num=which(bb0[,3]==max(bb0[,3]))
-y_gaussian <- seq(-1, 0.65, length.out = 100)  # 高斯分布的 y 范围
-mean_gaussian <- aa0[sel.num,"mean"]  # 高斯分布的均值（中心位置）
-sd_gaussian <- 2*(aa0[sel.num,"mean"]-aa0[sel.num,"lower"])  # 高斯分布的标准差
-x_gaussian <- dnorm(y_gaussian, mean = mean_gaussian, sd = sd_gaussian)  # 高斯分布的概率密度函数
-x_gaussian <- x_gaussian / max(x_gaussian) * 0.2  # 调整宽度以适应图形范围
+y_gaussian <- seq(-1, 0.65, length.out = 100)  # 
+mean_gaussian <- aa0[sel.num,"mean"]  # 
+sd_gaussian <- 2*(aa0[sel.num,"mean"]-aa0[sel.num,"lower"])  # 
+x_gaussian <- dnorm(y_gaussian, mean = mean_gaussian, sd = sd_gaussian)  # 
+x_gaussian <- x_gaussian / max(x_gaussian) * 0.2  # 
 
 # 
-lines(x_gaussian + sel, y_gaussian, col="blue", lwd=1.5, lty=2)  # 将高斯分布平移至 x = 0.5 处
+lines(x_gaussian + sel, y_gaussian, col="blue", lwd=1.5, lty=2)  # 
 
 # Add shading to a portion of the Gaussian distribution.
 up=which.min(abs(unlist(cc0[,3])-unlist(tar_data)))
 Dis_min=abs(cc0[up,3]-tar_data[,2])
-y_shaded <- seq(-1, Dis_min, length.out = 50)  # 需要阴影的 y 范围
-x_shaded <- dnorm(y_shaded, mean = mean_gaussian, sd = sd_gaussian)  # 计算阴影区域的高斯分布值
-x_shaded <- x_shaded / max(x_shaded) * 0.2  # 调整宽度
-polygon(c(x_shaded + sel, rep(sel, length(y_shaded))), c(y_shaded, rev(y_shaded)), col=rgb(0, 0, 1, 0.3), border = NA)  # 添加阴影
+y_shaded <- seq(-1, Dis_min, length.out = 50)  # 
+x_shaded <- dnorm(y_shaded, mean = mean_gaussian, sd = sd_gaussian)  # 
+x_shaded <- x_shaded / max(x_shaded) * 0.2  # 
+polygon(c(x_shaded + sel, rep(sel, length(y_shaded))), c(y_shaded, rev(y_shaded)), col=rgb(0, 0, 1, 0.3), border = NA)  # 
 
 # 
 par(new=T)
@@ -283,14 +284,14 @@ abline(h=unlist(tar_data),type="l", lty=3, ylab="y",xlab="x",col=brewer.pal(9, "
 # Plot Gaussian distribution
 sel=bb1[which(bb1[,3]==max(bb1[,3])),2]
 sel.num=which(bb1[,3]==max(bb1[,3]))
-y_gaussian <- seq(-1, 0.65, length.out = 100)  # 高斯分布的 y 范围
-mean_gaussian <- aa1[sel.num,"mean"]  # 高斯分布的均值（中心位置）
-sd_gaussian <- 2*(aa1[sel.num,"mean"]-aa1[sel.num,"lower"])  # 高斯分布的标准差
-x_gaussian <- dnorm(y_gaussian, mean = mean_gaussian, sd = sd_gaussian)  # 高斯分布的概率密度函数
-x_gaussian <- x_gaussian / max(x_gaussian) * 0.2  # 调整宽度以适应图形范围
+y_gaussian <- seq(-1, 0.65, length.out = 100)  # 
+mean_gaussian <- aa1[sel.num,"mean"]  # 
+sd_gaussian <- 2*(aa1[sel.num,"mean"]-aa1[sel.num,"lower"])  # 
+x_gaussian <- dnorm(y_gaussian, mean = mean_gaussian, sd = sd_gaussian)  # 
+x_gaussian <- x_gaussian / max(x_gaussian) * 0.2  # 
 
 # 
-lines(x_gaussian + sel, y_gaussian, col="blue", lwd=1.5, lty=2)  # 将高斯分布平移至 x = 0.5 处
+lines(x_gaussian + sel, y_gaussian, col="blue", lwd=1.5, lty=2)  # 
 
 # Add shading to a portion of the Gaussian distribution.
 up=which.min(abs(unlist(cc1[,3])-unlist(tar_data)))
@@ -303,10 +304,10 @@ up=which.min(abs(unlist(cc1[,3])-unlist(tar_data)))
 
 ```r
 Dis_min=abs(cc1[up,3]-tar_data[,2])
-y_shaded <- seq(-1, Dis_min, length.out = 50)  # 需要阴影的 y 范围
-x_shaded <- dnorm(y_shaded, mean = mean_gaussian, sd = sd_gaussian)  # 计算阴影区域的高斯分布值
-x_shaded <- x_shaded / max(x_shaded) * 0.2  # 调整宽度
-polygon(c(x_shaded + sel, rep(sel, length(y_shaded))), c(y_shaded, rev(y_shaded)), col=rgb(0, 0, 1, 0.3), border = NA)  # 添加阴影
+y_shaded <- seq(-1, Dis_min, length.out = 50)  # 
+x_shaded <- dnorm(y_shaded, mean = mean_gaussian, sd = sd_gaussian)  # 
+x_shaded <- x_shaded / max(x_shaded) * 0.2  # 
+polygon(c(x_shaded + sel, rep(sel, length(y_shaded))), c(y_shaded, rev(y_shaded)), col=rgb(0, 0, 1, 0.3), border = NA)  # 
 
 
 # 
@@ -358,22 +359,22 @@ abline(h=unlist(tar_data),type="l", lty=3, ylab="y",xlab="x",col=brewer.pal(9, "
 # Plot Gaussian distribution
 sel=bb5[which(bb5[,3]==max(bb5[,3])),2]
 sel.num=which(bb5[,3]==max(bb5[,3]))
-y_gaussian <- seq(-1, 0.65, length.out = 100)  # 高斯分布的 y 范围
-mean_gaussian <- aa5[sel.num,"mean"]  # 高斯分布的均值（中心位置）
-sd_gaussian <- 2*(aa5[sel.num,"mean"]-aa5[sel.num,"lower"])  # 高斯分布的标准差
-x_gaussian <- dnorm(y_gaussian, mean = mean_gaussian, sd = sd_gaussian)  # 高斯分布的概率密度函数
-x_gaussian <- x_gaussian / max(x_gaussian) * 0.2  # 调整宽度以适应图形范围
+y_gaussian <- seq(-1, 0.65, length.out = 100)  # 
+mean_gaussian <- aa5[sel.num,"mean"]  # 
+sd_gaussian <- 2*(aa5[sel.num,"mean"]-aa5[sel.num,"lower"])  # 
+x_gaussian <- dnorm(y_gaussian, mean = mean_gaussian, sd = sd_gaussian)  # 
+x_gaussian <- x_gaussian / max(x_gaussian) * 0.2  # 
 
 # 
-lines(x_gaussian + sel, y_gaussian, col="blue", lwd=1.5, lty=2)  # 将高斯分布平移至 x = 0.5 处
+lines(x_gaussian + sel, y_gaussian, col="blue", lwd=1.5, lty=2)  # 
 
 # Add shading to a portion of the Gaussian distribution.
 up=which.min(abs(unlist(cc2[,3])-unlist(tar_data)))
 Dis_min=abs(cc2[up,3]-tar_data[,2])
-y_shaded <- seq(-1, Dis_min, length.out = 50)  # 需要阴影的 y 范围
-x_shaded <- dnorm(y_shaded, mean = mean_gaussian, sd = sd_gaussian)  # 计算阴影区域的高斯分布值
-x_shaded <- x_shaded / max(x_shaded) * 0.19  # 调整宽度
-polygon(c(x_shaded + sel, rep(sel, length(y_shaded))), c(y_shaded, rev(y_shaded)), col=rgb(0, 0, 1, 0.3), border = NA)  # 添加阴影
+y_shaded <- seq(-1, Dis_min, length.out = 50)  # 
+x_shaded <- dnorm(y_shaded, mean = mean_gaussian, sd = sd_gaussian)  # 
+x_shaded <- x_shaded / max(x_shaded) * 0.19  # 
+polygon(c(x_shaded + sel, rep(sel, length(y_shaded))), c(y_shaded, rev(y_shaded)), col=rgb(0, 0, 1, 0.3), border = NA)  # 
 
 
 par(new=T)
