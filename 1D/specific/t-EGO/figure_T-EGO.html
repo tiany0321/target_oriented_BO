@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title></title>
+<style type="text/css">
+/**
+ * Prism.s theme ported from highlight.js's xcode style
+ */
+pre code {
+  padding: 1em;
+}
+.token.comment {
+  color: #007400;
+}
+.token.punctuation {
+  color: #999;
+}
+.token.tag,
+.token.selector {
+  color: #aa0d91;
+}
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol {
+  color: #1c00cf;
+}
+.token.property,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin {
+  color: #c41a16;
+}
+.token.inserted {
+  background-color: #ccffd8;
+}
+.token.deleted {
+  background-color: #ffebe9;
+}
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #9a6e3a;
+}
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #836c28;
+}
+.token.function,
+.token.class-name {
+  color: #DD4A68;
+}
+.token.regex,
+.token.important,
+.token.variable {
+  color: #5c2699;
+}
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+</style>
+<style type="text/css">
+body {
+  font-family: sans-serif;
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+body, .footnotes, code { font-size: .9em; }
+li li { font-size: .95em; }
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+pre, img { max-width: 100%; }
+pre, pre:hover {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+pre code {
+  display: block;
+  overflow-x: auto;
+}
+code { font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace; }
+:not(pre) > code, code[class] { background-color: #F8F8F8; }
+code.language-undefined, pre > code:not([class]) {
+  background-color: inherit;
+  border: 1px solid #eee;
+}
+table {
+  margin: auto;
+  border-top: 1px solid #666;
+}
+table thead th { border-bottom: 1px solid #ddd; }
+th, td { padding: 5px; }
+thead, tfoot, tr:nth-child(even) { background: #eee; }
+blockquote {
+  color: #666;
+  margin: 0;
+  padding-left: 1em;
+  border-left: 0.5em solid #eee;
+}
+hr, .footnotes::before { border: 1px dashed #ddd; }
+.frontmatter { text-align: center; }
+#TOC .numbered li { list-style: none; }
+#TOC .numbered { padding-left: 0; }
+#TOC .numbered ul { padding-left: 1em; }
+table, .body h2 { border-bottom: 1px solid #666; }
+.body .appendix, .appendix ~ h2 { border-bottom-style: dashed; }
+.footnote-ref a::before { content: "["; }
+.footnote-ref a::after { content: "]"; }
+section.footnotes::before {
+  content: "";
+  display: block;
+  max-width: 20em;
+}
+
+@media print {
+  body {
+    font-size: 12pt;
+    max-width: 100%;
+  }
+  tr, img { page-break-inside: avoid; }
+}
+@media only screen and (min-width: 992px) {
+  pre { white-space: pre; }
+}
+</style>
+</head>
+<body>
+<div class="frontmatter">
+<div class="title"><h1></h1></div>
+<div class="author"><h2></h2></div>
+<div class="date"><h3></h3></div>
+</div>
+<div class="body">
+<pre><code class="language-r">setwd(&quot;C:\\Users\\12758\\Desktop\\target_oriented_BO\\1D\\specific\\t-EGO&quot;)
+library(RColorBrewer)
+
+###########Read data
+aa0=read.csv(&quot;yy0.csv&quot;)
+aa1=read.csv(&quot;1.csv&quot;)
+aa5=read.csv(&quot;2.csv&quot;)
+aa15=read.csv(&quot;3.csv&quot;)
+aa25=read.csv(&quot;4.csv&quot;)
+aa50=read.csv(&quot;5.csv&quot;)
+bb0=read.csv(&quot;ee0.csv&quot;)
+bb1=read.csv(&quot;1ee.csv&quot;)
+bb5=read.csv(&quot;2ee.csv&quot;)
+bb15=read.csv(&quot;3ee.csv&quot;)
+bb25=read.csv(&quot;4ee.csv&quot;)
+bb50=read.csv(&quot;5ee.csv&quot;)
+cc0=read.csv(&quot;0train.csv&quot;)
+cc1=read.csv(&quot;1train.csv&quot;)
+cc2=read.csv(&quot;2train.csv&quot;)
+cc3=read.csv(&quot;3train.csv&quot;)
+cc4=read.csv(&quot;4train.csv&quot;)
+cc5=read.csv(&quot;5train.csv&quot;)
+cc6=read.csv(&quot;6train.csv&quot;)
+tar_data=read.csv(&quot;tar_data.csv&quot;)
+
+ym=0.16########ylim of utility plot
+##############1D function
+f11_xiong &lt;- function(x){ 
+  return( sin(4 * (x - 1.3)^4) * cos( (x - 1.4)) + (x - 0.9) / 2)
+}
+
+tar=24
+total.data.x &lt;- as.data.frame(seq(0, 1, , 200))
+colnames(total.data.x)=&quot;x&quot;
+total.data.y &lt;- as.data.frame(f11_xiong(total.data.x))
+colnames(total.data.y)=&quot;es&quot;
+
+
+#display.brewer.all(type = &quot;seq&quot;)
+#pdf(&quot;T-EGO.pdf&quot;,width=11.7,height=6)
+#Plot 1-1
+par(mfrow = c(2,6),mai=c(0.07,0.05,0.07,0.05),omi=c(1.5,0.3,1.5,0.1))
+plot(aa0[,&quot;x&quot;], aa0[,&quot;mean&quot;],xaxt=&quot;n&quot;, type=&quot;l&quot;,  ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=&quot;black&quot;, lwd=1.5, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+polygon(c(aa0[,&quot;x&quot;],rev(aa0[,&quot;x&quot;])), c(aa0[,&quot;lower&quot;], rev(aa0[,&quot;upper&quot;])), col=brewer.pal(9, &quot;Purples&quot;)[3], border = brewer.pal(9, &quot;Purples&quot;)[3])
+lines(aa0[,&quot;x&quot;], aa0[,&quot;mean&quot;], type=&quot;l&quot;,  xlab=&quot;x&quot;, ylab=&quot;y&quot;, col=brewer.pal(9, &quot;Purples&quot;)[8], lwd=1.5)
+text(x = 0.93, y = -0.9, labels = &quot;#=0&quot;,cex = 1.4,font=1.7 )
+text(x = 0.5, y = -0.9, labels = &quot;t-EGO&quot;,cex = 1.4,font=1.7 )
+par(new=T)
+plot(unlist(total.data.x),unlist(total.data.y), xaxt=&quot;n&quot;,type=&quot;l&quot;, lty=2, ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=&quot;red&quot;, lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+points(unlist(cc0[,2]),unlist(cc0[,3]), pch=20,col=brewer.pal(9, &quot;Oranges&quot;)[5],cex=1.7)
+abline(h=unlist(tar_data),type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r">#Plot 1-2
+plot(aa1[,&quot;x&quot;], aa1[,&quot;mean&quot;],xaxt=&quot;n&quot;, yaxt=&quot;n&quot;, type=&quot;l&quot;,  ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=&quot;blue&quot;, lwd=1.5, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+polygon(c(aa1[,&quot;x&quot;],rev(aa1[,&quot;x&quot;])), c(aa1[,&quot;lower&quot;], rev(aa1[,&quot;upper&quot;])), col=brewer.pal(9, &quot;Purples&quot;)[3], border = brewer.pal(9, &quot;Purples&quot;)[3])
+lines(aa1[,&quot;x&quot;], aa1[,&quot;mean&quot;], type=&quot;l&quot;,  xlab=&quot;x&quot;, ylab=&quot;y&quot;, col=brewer.pal(9, &quot;Purples&quot;)[8], lwd=1.5)
+text(x = 0.93, y = -0.9, labels = &quot;#=1&quot;,cex = 1.4,font=1.7 )
+par(new=T)
+plot(unlist(total.data.x),unlist(total.data.y), xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,type=&quot;l&quot;, lty=2, ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=&quot;red&quot;, lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+points(unlist(cc0[,2]),unlist(cc0[,3]), pch=20,col=brewer.pal(9, &quot;Oranges&quot;)[5],cex=1.7)
+points(unlist(cc1[5,2]),unlist(cc1[5,3]), pch=20,col=&quot;red&quot;,cex=1.7)
+abline(h=unlist(tar_data),type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r">#Plot 1-3
+plot(aa5[,&quot;x&quot;], aa5[,&quot;mean&quot;],xaxt=&quot;n&quot;, yaxt=&quot;n&quot;, type=&quot;l&quot;,  ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=&quot;blue&quot;, lwd=1.5, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+polygon(c(aa5[,&quot;x&quot;],rev(aa5[,&quot;x&quot;])), c(aa5[,&quot;lower&quot;], rev(aa5[,&quot;upper&quot;])), col=brewer.pal(9, &quot;Purples&quot;)[3], border = brewer.pal(9, &quot;Purples&quot;)[3])
+lines(aa5[,&quot;x&quot;], aa5[,&quot;mean&quot;], type=&quot;l&quot;,  xlab=&quot;x&quot;, ylab=&quot;y&quot;, col=brewer.pal(9, &quot;Purples&quot;)[8], lwd=1.5)
+text(x = 0.93, y = -0.9, labels = &quot;#=2&quot;,cex = 1.4,font=1.7 )
+par(new=T)
+plot(unlist(total.data.x),unlist(total.data.y), xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,type=&quot;l&quot;, lty=2, ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=&quot;red&quot;, lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+points(unlist(cc1[,2]),unlist(cc1[,3]), pch=20,col=brewer.pal(9, &quot;Oranges&quot;)[5],cex=1.7)
+points(unlist(cc2[6,2]),unlist(cc2[6,3]), pch=20,col=&quot;red&quot;,cex=1.7)
+abline(h=unlist(tar_data),type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r">#Plot 1-4
+plot(aa15[,&quot;x&quot;], aa15[,&quot;mean&quot;], xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,type=&quot;l&quot;,  ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=&quot;blue&quot;, lwd=1.5, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+polygon(c(aa15[,&quot;x&quot;],rev(aa15[,&quot;x&quot;])), c(aa15[,&quot;lower&quot;], rev(aa15[,&quot;upper&quot;])), col=brewer.pal(9, &quot;Purples&quot;)[3], border = brewer.pal(9, &quot;Purples&quot;)[3])
+lines(aa15[,&quot;x&quot;], aa15[,&quot;mean&quot;], type=&quot;l&quot;,  xlab=&quot;x&quot;, ylab=&quot;y&quot;, col=brewer.pal(9, &quot;Purples&quot;)[8], lwd=1.5)
+text(x = 0.93, y = -0.9, labels = &quot;#=3&quot;,cex = 1.4,font=1.7 )
+par(new=T)
+plot(unlist(total.data.x),unlist(total.data.y), xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,type=&quot;l&quot;, lty=2, ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=&quot;red&quot;, lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+points(unlist(cc2[,2]),unlist(cc2[,3]), pch=20,col=brewer.pal(9, &quot;Oranges&quot;)[5],cex=1.7)
+points(unlist(cc3[7,2]),unlist(cc3[7,3]), pch=20,col=&quot;red&quot;,cex=1.7)
+abline(h=unlist(tar_data),type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r">#Plot 1-5
+plot(aa25[,&quot;x&quot;], aa25[,&quot;mean&quot;],xaxt=&quot;n&quot;, yaxt=&quot;n&quot;, type=&quot;l&quot;,  ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=&quot;blue&quot;, lwd=1.5, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+polygon(c(aa25[,&quot;x&quot;],rev(aa25[,&quot;x&quot;])), c(aa25[,&quot;lower&quot;], rev(aa25[,&quot;upper&quot;])), col=brewer.pal(9, &quot;Purples&quot;)[3], border = brewer.pal(9, &quot;Purples&quot;)[3])
+lines(aa25[,&quot;x&quot;], aa25[,&quot;mean&quot;], type=&quot;l&quot;,  xlab=&quot;x&quot;, ylab=&quot;y&quot;, col=brewer.pal(9, &quot;Purples&quot;)[8], lwd=1.5)
+text(x = 0.93, y = -0.9,labels = &quot;#=4&quot;,cex = 1.4,font=1.7 )
+par(new=T)
+plot(unlist(total.data.x),unlist(total.data.y), xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,type=&quot;l&quot;, lty=2, ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=&quot;red&quot;, lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+points(unlist(cc3[,2]),unlist(cc3[,3]), pch=20,col=brewer.pal(9, &quot;Oranges&quot;)[5],cex=1.7)
+points(unlist(cc4[8,2]),unlist(cc4[8,3]), pch=20,col=&quot;red&quot;,cex=1.7)
+abline(h=unlist(tar_data),type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r">#Plot 1-6
+plot(aa50[,&quot;x&quot;], aa50[,&quot;mean&quot;],xaxt=&quot;n&quot;, yaxt=&quot;n&quot;, type=&quot;l&quot;,  ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=&quot;blue&quot;, lwd=1.5, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+polygon(c(aa50[,&quot;x&quot;],rev(aa50[,&quot;x&quot;])), c(aa50[,&quot;lower&quot;], rev(aa50[,&quot;upper&quot;])), col=brewer.pal(9, &quot;Purples&quot;)[3], border = brewer.pal(9, &quot;Purples&quot;)[3])
+lines(aa50[,&quot;x&quot;], aa50[,&quot;mean&quot;], type=&quot;l&quot;,  xlab=&quot;x&quot;, ylab=&quot;y&quot;, col=brewer.pal(9, &quot;Purples&quot;)[8], lwd=1.5)
+text(x = 0.93, y = -0.9, labels = &quot;#=5&quot;,cex = 1.4,font=1.7 )
+par(new=T)
+plot(unlist(total.data.x),unlist(total.data.y), xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,type=&quot;l&quot;, lty=2, ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=&quot;red&quot;, lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+points(unlist(cc5[,2]),unlist(cc5[,3]), pch=20,col=brewer.pal(9, &quot;Oranges&quot;)[5],cex=1.7)
+points(unlist(cc6[9,2]),unlist(cc6[9,3]), pch=20,col=&quot;red&quot;,cex=1.7)
+abline(h=unlist(tar_data),type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r">#Plot 2-1
+plot(bb0[,2],bb0[,3],type=&quot;l&quot;, xlab=&quot;x&quot;, ylab=&quot;y&quot;,col=&quot;purple&quot;,ylim=c(0,ym), lwd=1,tck=0.01,font=2,font.lab=2,cex.axis=1.2,cex.lab=1.2)
+points(bb0[which(bb0[,3]==max(bb0[,3])),2],max(bb0[,3])+0.1*ym,pch=25,bg=&quot;red&quot;) 
+polygon(c(bb0[,2],rev(bb0[,2])), c(rep(0,nrow(bb0)), rev(bb0[,3])), col=brewer.pal(9, &quot;Greens&quot;)[2], border = brewer.pal(9, &quot;Greens&quot;)[2])
+par(new=T)
+plot(bb0[,2],bb0[,3],type=&quot;l&quot;, xlab=&quot;x&quot;, ylab=&quot;y&quot;,col=brewer.pal(9, &quot;Greens&quot;)[8],ylim=c(0,ym), lwd=1,tck=0.01,font=2,font.lab=2,cex.axis=1.2,cex.lab=1.2)
+
+#Plot 2-2
+plot(bb1[,2],bb1[,3],xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,type=&quot;l&quot;, xlab=&quot;x&quot;, ylab=&quot;y&quot;,col=&quot;purple&quot;,ylim=c(0,ym), lwd=1,tck=0.01,font=2,font.lab=2,cex.axis=1.2,cex.lab=1.2)
+points(bb1[which(bb1[,3]==max(bb1[,3])),2],max(bb1[,3])+0.1*ym,pch=25,bg=&quot;red&quot;) 
+polygon(c(bb1[,2],rev(bb1[,2])), c(rep(0,nrow(bb1)), rev(bb1[,3])), col=brewer.pal(9, &quot;Greens&quot;)[2], border = brewer.pal(9, &quot;Greens&quot;)[2])
+par(new=T)
+plot(bb1[,2],bb1[,3],xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,type=&quot;l&quot;, xlab=&quot;x&quot;, ylab=&quot;y&quot;,col=brewer.pal(9, &quot;Greens&quot;)[8],ylim=c(0,ym), lwd=1,tck=0.01,font=2,font.lab=2,cex.axis=1.2,cex.lab=1.2)
+
+#Plot 2-3
+plot(bb5[,2],bb5[,3],xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,type=&quot;l&quot;, xlab=&quot;x&quot;, ylab=&quot;y&quot;,col=&quot;purple&quot;,ylim=c(0,ym), lwd=1,tck=0.01,font=2,font.lab=2,cex.axis=1.2,cex.lab=1.2)
+points(bb5[which(bb5[,3]==max(bb5[,3])),2],max(bb5[,3])+0.1*ym,pch=25,bg=&quot;red&quot;) 
+polygon(c(bb5[,2],rev(bb5[,2])), c(rep(0,nrow(bb5)), rev(bb5[,3])), col=brewer.pal(9, &quot;Greens&quot;)[2], border = brewer.pal(9, &quot;Greens&quot;)[2])
+par(new=T)
+plot(bb5[,2],bb5[,3],xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,type=&quot;l&quot;, xlab=&quot;x&quot;, ylab=&quot;y&quot;,col=brewer.pal(9, &quot;Greens&quot;)[8],ylim=c(0,ym), lwd=1,tck=0.01,font=2,font.lab=2,cex.axis=1.2,cex.lab=1.2)
+
+#Plot 2-4
+plot(bb15[,2],bb15[,3],xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,type=&quot;l&quot;, xlab=&quot;x&quot;, ylab=&quot;y&quot;,col=&quot;purple&quot;,ylim=c(0,ym), lwd=1,tck=0.01,font=2,font.lab=2,cex.axis=1.2,cex.lab=1.2)
+points(bb15[which(bb15[,3]==max(bb15[,3])),2],max(bb15[,3])+0.1*ym,pch=25,bg=&quot;red&quot;) 
+polygon(c(bb15[,2],rev(bb15[,2])), c(rep(0,nrow(bb15)), rev(bb15[,3])), col=brewer.pal(9, &quot;Greens&quot;)[2], border = brewer.pal(9, &quot;Greens&quot;)[2])
+par(new=T)
+plot(bb15[,2],bb15[,3],xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,type=&quot;l&quot;, xlab=&quot;x&quot;, ylab=&quot;y&quot;,col=brewer.pal(9, &quot;Greens&quot;)[8],ylim=c(0,ym), lwd=1,tck=0.01,font=2,font.lab=2,cex.axis=1.2,cex.lab=1.2)
+
+#Plot 2-5
+plot(bb25[,2],bb25[,3],xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,type=&quot;l&quot;, xlab=&quot;x&quot;, ylab=&quot;y&quot;,col=&quot;purple&quot;,ylim=c(0,ym), lwd=1,tck=0.01,font=2,font.lab=2,cex.axis=1.2,cex.lab=1.2)
+points(bb25[which(bb25[,3]==max(bb25[,3])),2],max(bb25[,3])+0.1*ym,pch=25,bg=&quot;red&quot;) 
+polygon(c(bb25[,2],rev(bb25[,2])), c(rep(0,nrow(bb25)), rev(bb25[,3])), col=brewer.pal(9, &quot;Greens&quot;)[2], border = brewer.pal(9, &quot;Greens&quot;)[2])
+par(new=T)
+plot(bb25[,2],bb25[,3],xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,type=&quot;l&quot;, xlab=&quot;x&quot;, ylab=&quot;y&quot;,col=brewer.pal(9, &quot;Greens&quot;)[8],ylim=c(0,ym), lwd=1,tck=0.01,font=2,font.lab=2,cex.axis=1.2,cex.lab=1.2)
+
+#Plot 2-6
+plot(bb50[,2],bb50[,3],xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,type=&quot;l&quot;, xlab=&quot;x&quot;, ylab=&quot;y&quot;,col=&quot;purple&quot;,ylim=c(0,ym), lwd=1,tck=0.01,font=2,font.lab=2,cex.axis=1.2,cex.lab=1.2)
+points(bb50[which(bb50[,3]==max(bb50[,3])),2],max(bb50[,3])+0.1*ym,pch=25,bg=&quot;red&quot;) 
+polygon(c(bb50[,2],rev(bb50[,2])), c(rep(0,nrow(bb50)), rev(bb50[,3])), col=brewer.pal(9, &quot;Greens&quot;)[2], border = brewer.pal(9, &quot;Greens&quot;)[2])
+par(new=T)
+plot(bb50[,2],bb50[,3],xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,type=&quot;l&quot;, xlab=&quot;x&quot;, ylab=&quot;y&quot;,col=brewer.pal(9, &quot;Greens&quot;)[8],ylim=c(0,ym), lwd=1,tck=0.01,font=2,font.lab=2,cex.axis=1.2,cex.lab=1.2)
+</code></pre>
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-1" /></p>
+<pre><code class="language-r">#dev.off()
+
+
+####################################t-EI varies as the iteration
+
+par(mfrow = c(1,3),mai=c(0.07,0.8,0.07,0.05),omi=c(1.5,0.3,1.5,0.1))
+
+###################iteration 1
+# Draw the mean curve and confidence interval.
+plot(aa0[,&quot;x&quot;], aa0[,&quot;mean&quot;], type=&quot;l&quot;, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=&quot;black&quot;, lwd=1.5, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+polygon(c(aa0[,&quot;x&quot;], rev(aa0[,&quot;x&quot;])), c(aa0[,&quot;lower&quot;], rev(aa0[,&quot;upper&quot;])), col=brewer.pal(9, &quot;Purples&quot;)[3], border = brewer.pal(9, &quot;Purples&quot;)[3])
+lines(aa0[,&quot;x&quot;], aa0[,&quot;mean&quot;], type=&quot;l&quot;, xlab=&quot;x&quot;, ylab=&quot;y&quot;, col=brewer.pal(9, &quot;Purples&quot;)[8], lwd=1.5)
+
+# Add text labels.
+text(x = 0.93, y = -0.9, labels = &quot;#=0&quot;, cex = 1.4, font=1.7)
+text(x = 0.5, y = -0.9, labels = &quot;t-EGO&quot;, cex = 1.4, font=1.7)
+
+# Plot Gaussian distribution
+sel=bb0[which(bb0[,3]==max(bb0[,3])),2]
+sel.num=which(bb0[,3]==max(bb0[,3]))
+y_gaussian &lt;- seq(-1, 0.65, length.out = 100)  # The y-range of the Gaussian distribution.
+mean_gaussian &lt;- aa0[sel.num,&quot;mean&quot;]  # The mean (central position) of the Gaussian distribution.
+sd_gaussian &lt;- 2*(aa0[sel.num,&quot;mean&quot;]-aa0[sel.num,&quot;lower&quot;])  #The standard deviation of the Gaussian distribution.
+x_gaussian &lt;- dnorm(y_gaussian, mean = mean_gaussian, sd = sd_gaussian)  # The probability density function of the Gaussian distribution.
+x_gaussian &lt;- x_gaussian / max(x_gaussian) * 0.2  # 
+
+# 
+lines(x_gaussian + sel, y_gaussian, col=&quot;blue&quot;, lwd=1.5, lty=2)  # 
+
+# Add shading to a portion of the Gaussian distribution.
+up=which.min(abs(unlist(cc0[,3])-unlist(tar_data)))
+Dis_min=abs(cc0[up,3]-tar_data[,2])
+y_shaded &lt;- seq(tar_data[,2]-Dis_min, tar_data[,2]+Dis_min, length.out = 50)   # limits
+x_shaded &lt;- dnorm(y_shaded, mean = mean_gaussian, sd = sd_gaussian)  # Calculate the Gaussian distribution value of the shaded region.
+x_shaded &lt;- x_shaded / max(x_shaded) * 0.2  # 调整宽度
+polygon(c(x_shaded + sel, rep(sel, length(y_shaded))), c(y_shaded, rev(y_shaded)), col=rgb(0, 0, 1, 0.3), border = NA)  #
+
+# 
+par(new=T)
+plot(unlist(total.data.x), unlist(total.data.y), xaxt=&quot;n&quot;, type=&quot;l&quot;, lty=2, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=&quot;red&quot;, lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+points(unlist(cc0[,2]), unlist(cc0[,3]), pch=20, col=brewer.pal(9, &quot;Oranges&quot;)[5], cex=1.7)
+abline(h=unlist(tar_data), type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r">abline(h=tar_data[,2]+Dis_min, type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r">abline(h=tar_data[,2]-Dis_min, type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r">text(x = 0.02, y = tar_data[,2]+0.035, labels = &quot;t&quot;, cex = 1, font=1.7)
+text(x = 0.04, y = tar_data[,2]+Dis_min+0.035, labels = &quot;y_t.min&quot;, cex = 1, font=1.7)
+text(x = 0.05, y = tar_data[,2]-Dis_min+0.035, labels = &quot;t-y_t.min&quot;, cex = 1, font=1.7)
+
+
+
+
+###################iteration 2
+# Draw the mean curve and confidence interval.
+plot(aa1[,&quot;x&quot;], aa1[,&quot;mean&quot;], type=&quot;l&quot;,  ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=&quot;blue&quot;, lwd=1.5, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+polygon(c(aa1[,&quot;x&quot;],rev(aa1[,&quot;x&quot;])), c(aa1[,&quot;lower&quot;], rev(aa1[,&quot;upper&quot;])), col=brewer.pal(9, &quot;Purples&quot;)[3], border = brewer.pal(9, &quot;Purples&quot;)[3])
+lines(aa1[,&quot;x&quot;], aa1[,&quot;mean&quot;], type=&quot;l&quot;,  xlab=&quot;x&quot;, ylab=&quot;y&quot;, col=brewer.pal(9, &quot;Purples&quot;)[8], lwd=1.5)
+text(x = 0.93, y = -0.9, labels = &quot;#=1&quot;,cex = 1.4,font=1.7 )
+text(x = 0.5, y = -0.9, labels = &quot;t-EGO&quot;, cex = 1.4, font=1.7)
+par(new=T)
+plot(unlist(total.data.x),unlist(total.data.y), xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,type=&quot;l&quot;, lty=2, ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=&quot;red&quot;, lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+points(unlist(cc0[,2]),unlist(cc0[,3]), pch=20,col=brewer.pal(9, &quot;Oranges&quot;)[5],cex=1.7)
+points(unlist(cc1[5,2]),unlist(cc1[5,3]), pch=20,col=&quot;red&quot;,cex=1.7)
+abline(h=unlist(tar_data),type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r"># Plot Gaussian distribution
+sel=bb1[which(bb1[,3]==max(bb1[,3])),2]
+sel.num=which(bb1[,3]==max(bb1[,3]))
+y_gaussian &lt;- seq(-1, 0.65, length.out = 100)  # The y-range of the Gaussian distribution.
+mean_gaussian &lt;- aa1[sel.num,&quot;mean&quot;]  # The mean (central position) of the Gaussian distribution.
+sd_gaussian &lt;-  2*(aa1[sel.num,&quot;mean&quot;]-aa1[sel.num,&quot;lower&quot;])  #The standard deviation of the Gaussian distribution.
+x_gaussian &lt;- dnorm(y_gaussian, mean = mean_gaussian, sd = sd_gaussian)  # The probability density function of the Gaussian distribution.
+x_gaussian &lt;- x_gaussian / max(x_gaussian) * 0.2  #
+
+# 
+lines(x_gaussian + sel, y_gaussian, col=&quot;blue&quot;, lwd=1.5, lty=2)  # 
+
+# Add shading to a portion of the Gaussian distribution.
+up=which.min(abs(unlist(cc1[,3])-unlist(tar_data)))
+</code></pre>
+<pre><code>## Warning in unlist(cc1[, 3]) - unlist(tar_data):
+## 长的对象长度不是短的对象长度的整倍数
+</code></pre>
+<pre><code class="language-r">Dis_min=abs(cc1[up,3]-tar_data[,2])
+y_shaded &lt;- seq(tar_data[,2]-Dis_min, tar_data[,2]+Dis_min, length.out = 50)   # limits
+x_shaded &lt;- dnorm(y_shaded, mean = mean_gaussian, sd = sd_gaussian)  # Calculate the Gaussian distribution value of the shaded region.
+x_shaded &lt;- x_shaded / max(x_shaded) * 0.2  # justify the width
+polygon(c(x_shaded + sel, rep(sel, length(y_shaded))), c(y_shaded, rev(y_shaded)), col=rgb(0, 0, 1, 0.3), border = NA)  # add shadow
+
+
+# 
+par(new=T)
+plot(unlist(total.data.x), unlist(total.data.y), xaxt=&quot;n&quot;, type=&quot;l&quot;, lty=2, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=&quot;red&quot;, lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+points(unlist(cc1[,2]), unlist(cc1[,3]), pch=20, col=brewer.pal(9, &quot;Oranges&quot;)[5], cex=1.7)
+abline(h=unlist(tar_data), type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r">abline(h=tar_data[,2]+Dis_min, type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r">abline(h=tar_data[,2]-Dis_min, type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r">text(x = 0.02, y = tar_data[,2]+0.035, labels = &quot;t&quot;, cex = 1, font=1.7)
+text(x = 0.04, y = tar_data[,2]+Dis_min+0.035, labels = &quot;y_t.min&quot;, cex = 1, font=1.7)
+text(x = 0.05, y = tar_data[,2]-Dis_min+0.035, labels = &quot;t-y_t.min&quot;, cex = 1, font=1.7)
+
+
+
+####################################iteration 3
+# Draw the mean curve and confidence interval.
+plot(aa5[,&quot;x&quot;], aa5[,&quot;mean&quot;],xaxt=&quot;n&quot;, yaxt=&quot;n&quot;, type=&quot;l&quot;,  ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=&quot;blue&quot;, lwd=1.5, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+polygon(c(aa5[,&quot;x&quot;],rev(aa5[,&quot;x&quot;])), c(aa5[,&quot;lower&quot;], rev(aa5[,&quot;upper&quot;])), col=brewer.pal(9, &quot;Purples&quot;)[3], border = brewer.pal(9, &quot;Purples&quot;)[3])
+lines(aa5[,&quot;x&quot;], aa5[,&quot;mean&quot;], type=&quot;l&quot;,  xlab=&quot;x&quot;, ylab=&quot;y&quot;, col=brewer.pal(9, &quot;Purples&quot;)[8], lwd=1.5)
+text(x = 0.93, y = -0.9, labels = &quot;#=2&quot;,cex = 1.4,font=1.7 )
+text(x = 0.5, y = -0.9, labels = &quot;t-EGO&quot;, cex = 1.4, font=1.7)
+par(new=T)
+plot(unlist(total.data.x),unlist(total.data.y), xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,type=&quot;l&quot;, lty=2, ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=&quot;red&quot;, lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+points(unlist(cc1[,2]),unlist(cc1[,3]), pch=20,col=brewer.pal(9, &quot;Oranges&quot;)[5],cex=1.7)
+points(unlist(cc2[6,2]),unlist(cc2[6,3]), pch=20,col=&quot;red&quot;,cex=1.7)
+abline(h=unlist(tar_data),type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r"># Plot Gaussian distribution
+sel=bb5[which(bb5[,3]==max(bb5[,3])),2]
+sel.num=which(bb5[,3]==max(bb5[,3]))
+y_gaussian &lt;- seq(-1, 0.65, length.out = 100)  # The y-range of the Gaussian distribution.
+mean_gaussian &lt;- aa1[sel.num,&quot;mean&quot;]  # The mean (central position) of the Gaussian distribution.
+sd_gaussian &lt;-  2*(aa1[sel.num,&quot;mean&quot;]-aa1[sel.num,&quot;lower&quot;])  #The standard deviation of the Gaussian distribution.
+x_gaussian &lt;- dnorm(y_gaussian, mean = mean_gaussian, sd = sd_gaussian) # The probability density function of the Gaussian distribution.
+x_gaussian &lt;- x_gaussian / max(x_gaussian) * 0.2  # justify the width
+
+# 
+lines(x_gaussian + sel, y_gaussian, col=&quot;blue&quot;, lwd=1.5, lty=2)  # 
+
+# Add shading to a portion of the Gaussian distribution.
+up=which.min(abs(unlist(cc2[,3])-unlist(tar_data)))
+Dis_min=abs(cc2[up,3]-tar_data[,2])
+y_shaded &lt;- seq(tar_data[,2]-Dis_min, tar_data[,2]+Dis_min, length.out = 50)  # limits
+x_shaded &lt;- dnorm(y_shaded, mean = mean_gaussian, sd = sd_gaussian)  # Calculate the Gaussian distribution value of the shaded region.
+x_shaded &lt;- x_shaded / max(x_shaded) * 0.2  # justify the width
+polygon(c(x_shaded + sel, rep(sel, length(y_shaded))), c(y_shaded, rev(y_shaded)), col=rgb(0, 0, 1, 0.3), border = NA)  # add shadow
+
+
+# 
+par(new=T)
+plot(unlist(total.data.x), unlist(total.data.y), xaxt=&quot;n&quot;, type=&quot;l&quot;, lty=2, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=&quot;red&quot;, lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+points(unlist(cc2[,2]), unlist(cc2[,3]), pch=20, col=brewer.pal(9, &quot;Oranges&quot;)[5], cex=1.7)
+abline(h=unlist(tar_data), type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r">abline(h=tar_data[,2]+Dis_min, type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r">abline(h=tar_data[,2]-Dis_min, type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r">text(x = 0.02, y = tar_data[,2]+0.035, labels = &quot;t&quot;, cex = 1, font=1.7)
+text(x = 0.04, y = tar_data[,2]+Dis_min+0.035, labels = &quot;y_t.min&quot;, cex = 1, font=1.7)
+text(x = 0.05, y = tar_data[,2]-Dis_min+0.035, labels = &quot;t-y_t.min&quot;, cex = 1, font=1.7)
+</code></pre>
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-1" /></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" defer></script>
+</body>
+</html>
