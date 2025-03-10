@@ -1,8 +1,0 @@
-#Iterative Optimization Process of Different Acquisition Functions in a 1-Dimensional Mathematical Function Case
-Acquisition Functions for Fixed-Value Problems
-(1) t-EGO
-(2) CEGO
-(3) PureExp
-Acquisition Functions for Minimizing |y - t|
-(1) EGO
-00
