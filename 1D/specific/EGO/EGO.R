@@ -1,4 +1,4 @@
-setwd("C:\\Users\\12758\\Desktop\\final-submit target\\revised\\target_oriented\\1D-visualization\\specific\\traditional EGO\\Rmarkdown")
+setwd("C:\\Users\\12758\\Desktop\\target_oriented_BO\\1D\\specific\\EGO")
 
 source("function_abs_y-t.R")
 
@@ -69,9 +69,10 @@ write.csv(yy0,"yy0.csv")
 head(yy0)
 
 ##########data frame
+selector=1
 data.OC.SD=matrix(,length(iter)-1,length(selector))
 data.dis=matrix(,length(iter)-1,length(selector))
-EI=as.data.frame(EI)
+#EI=as.data.frame(EI)
 SD=matrix(0,length(iter),1)
 dis=matrix(0,length(iter),1)
 

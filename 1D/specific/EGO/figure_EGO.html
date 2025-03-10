@@ -145,7 +145,7 @@ section.footnotes::before {
 <div class="date"><h3></h3></div>
 </div>
 <div class="body">
-<pre><code class="language-r">setwd(&quot;C:\\Users\\12758\\Desktop\\final-submit target\\revised\\target_oriented\\1D-visualization\\specific\\traditional EGO\\Rmarkdown&quot;)
+<pre><code class="language-r">setwd(&quot;C:\\Users\\12758\\Desktop\\target_oriented_BO\\1D\\specific\\EGO&quot;)
 
 library(RColorBrewer)
 
@@ -184,7 +184,7 @@ colnames(total.data.y)=&quot;es&quot;
 ym=0.032########ylim of utility plot
 
 #display.brewer.all(type = &quot;seq&quot;)
-#pdf(&quot;EGO1.pdf&quot;,width=11.7,height=6)
+#pdf(&quot;EGO.pdf&quot;,width=11.7,height=6)
 par(mfrow = c(2,6),mai=c(0.07,0.05,0.07,0.05),omi=c(1.5,0.3,1.5,0.1))
 
 #Plot 1-1
@@ -315,6 +315,176 @@ plot(bb50[,2],bb50[,3],xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,type=&quot;l&quot;
 </code></pre>
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAABNVBMVEUAAAAAAA0AACgAADoAAGYADQ0ADSgADVEAKCgAKIEAOjoAOpAAZrYAbSwNAAANAA0NACgNDQANDQ0NDSgNKFENKIENUYENUbwoAAAoAA0oACgoDQAoDQ0oDSgoKAAoKCgoUVEoUYEoUbwogbwogf86AAA6ADo6AGY6OpA6kNtRDQBRDQ1RKA1RKFFRgVFRvP9UJ49mAABmADpmAGZmZjpmtv+BKACBKA2BUSiBUYGBgYGBgbyBvLyBvP+B/4GB//+QOgCQOjqQOmaQ2/+mNgO2ZgC2Zjq2/7a2//+8UQ28USi8gSi8gby8vFG8vIG8vLy8/4G8///a2uvbkDrbtmbb/7bb/9vb///l9eD9jTz/AAD/gSj/tmb/vFH/vIH/vLz/25D/29v//4H//7b//7z//9v///8R6TBjAAAACXBIWXMAAAsSAAALEgHS3X78AAAYj0lEQVR4nO2dDbsct1mG1yZgDDluoaS4KQVKXRonpJkUnAaH1k1d04QAieVC7Dlxa+xj/f+fwO586uOVZiS9s0d73ue54ni8O3tLo1vSaMZz1juNiMzusiuAXE4gXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmggXmjC4ndcAa4Ux86Li8/sSgEOcPk4dl4UWXdbiMJBvFAcxAvFQbxQnBDxSrHi4rlsXPRYaxevoqqCbaHozwVeXsSFktuPAtVgrN2eFKeli1/JiyJTCosVF2oL8mMqGxc66Nx+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7PfvQ3yNOKzqheK2FI979RXjNj3H4159vbiNV/W4V18rbsupHvfqK8ZturjDvfp6cVjVC8VtLh7n+DpxGPFCcRAvFIcbOEJxuIEjFIcbOEJxuIEjFIcbOEJxWNULxUG8UBzEC8VBvFAcxAvFQbxQHMQLxUG8UBzEC8VBvFAcxAvFQbxQHMQLxW0pHk/gVIzbUDyewKkZt6F4PIFTM27LqR5P4FSM23Rxhydw6sVhVS8UB/FCcVsu7m7vDsGXH1WJ23LEf3Hru/vruU9wOVcjbtOp/ty8ht+gMODycTjHC8VBvFDcluJxr75i3Ibica++ZtyWl3O4V18xbsupHvfqK8Zturhbda++u8uTWIuTaNq6cZe/qt+1bZtaiZNo2rpxm4tfPsfvkr2fRtPWjbv8EQ/xl4KrQHxGFU6iaevG4QaOUBxu4AjF4QaOUBxu4AjFXf4NnILCgMvH1bCqzy4MuHwcxAvFQbxQHMQLxVUg/uzsLLOwupu2btyliz87e/r0aar5k2jaunGXLb7zDvHHx12u+F57uvmTaNq6cZcofn9uH71D/NFxlyD+bMzTORB/bNyxxdu+If7ScMcWT1lPN5/fFuSjnbvIexnxalcG5hNv1SOJFzkCQjz1IAaD+LMi8dSjnZP49Mc+yTKs34ZS88GMI/5Qjzzx4SdiffHkgxiXLZ58wg/iV3wytL8vnnwQI0O8e2dvO/GaY6Ina1cC5jzH7+uxvXjyQYx08YfVoPnu2dOytiA+NOO2El8CZl3c5YoP704t7ogHMZLFe7d0S8WH6y4KV8uqPmj+zH0X4llwW4pPWdWHxJ9B/MmJT1rVB8V770I8C25D8Umr+oB4/2b+/pUTadq6cVtO9Smreog/Mm7TxV3Cqp42f+a/C/E8uGpW9ZR48y90xrchngdXzar+6RkR4u2ntnjqU4mpG3e2EU7veHBrV/U8OYkxVTfu2Kt61sKAy8cde1XPWhhw+bhjr+pZCwMuH3fkVT1XgCvFsfNc8dY5HrnS4ZpEkBMLxAtN+AYOcqUTvoGDXOmEb+AgVzrhGzjIlU74Bg5ypYNVvdBAvNBAvNCQ4j/fXfsHe8N/a38FeDPw1s93u7d4a4mwhxL//FsfnH/rA3PDf+vg+Sb9qfNrHzy3P4XUF0r8+fUHL2/fMTf8t/Tz7/ztTfpTfndB6gsl/vMbj3uF04b/1sV7dz66SX/qMNX/9Vb1RZiSO+I/f0t/FBjx59d/8dz+FFJfMs/xF+8e/lrfurU/7fz5XvwtiK885Kr+P27t1+eHBVq3Qb+l3RE/vXWBVf0JBNfxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQgPxQvP/2WCtMEETi48AAAAASUVORK5CYII=" alt="plot of chunk unnamed-chunk-1" /></p>
 <pre><code class="language-r">#dev.off()
+
+
+par(mfrow = c(1,3),mai=c(0.07,0.8,0.07,0.05),omi=c(1.5,0.3,1.5,0.1))
+# 绘制均值曲线和置信区间
+plot(aa0[,&quot;x&quot;], aa0[,&quot;mean&quot;], type=&quot;l&quot;, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=&quot;black&quot;, lwd=1.5, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+polygon(c(aa0[,&quot;x&quot;], rev(aa0[,&quot;x&quot;])), c(aa0[,&quot;lower&quot;], rev(aa0[,&quot;upper&quot;])), col=brewer.pal(9, &quot;Purples&quot;)[3], border = brewer.pal(9, &quot;Purples&quot;)[3])
+lines(aa0[,&quot;x&quot;], aa0[,&quot;mean&quot;], type=&quot;l&quot;, xlab=&quot;x&quot;, ylab=&quot;y&quot;, col=brewer.pal(9, &quot;Purples&quot;)[8], lwd=1.5)
+
+# 添加文本标签
+text(x = 0.93, y = -0.9, labels = &quot;#=0&quot;, cex = 1.4, font=1.7)
+text(x = 0.5, y = -0.9, labels = &quot;EGO&quot;, cex = 1.4, font=1.7)
+
+# 绘制竖直的高斯分布在 x = 0.5 处
+sel=bb0[which(bb0[,3]==max(bb0[,3])),2]
+sel.num=which(bb0[,3]==max(bb0[,3]))
+y_gaussian &lt;- seq(-1, 0.65, length.out = 100)  # 高斯分布的 y 范围
+mean_gaussian &lt;- aa0[sel.num,&quot;mean&quot;]  # 高斯分布的均值（中心位置）
+sd_gaussian &lt;- 2*(aa0[sel.num,&quot;mean&quot;]-aa0[sel.num,&quot;lower&quot;])  # 高斯分布的标准差
+x_gaussian &lt;- dnorm(y_gaussian, mean = mean_gaussian, sd = sd_gaussian)  # 高斯分布的概率密度函数
+x_gaussian &lt;- x_gaussian / max(x_gaussian) * 0.2  # 调整宽度以适应图形范围
+
+# 添加竖直的高斯分布曲线
+lines(x_gaussian + sel, y_gaussian, col=&quot;blue&quot;, lwd=1.5, lty=2)  # 将高斯分布平移至 x = 0.5 处
+
+# 添加高斯分布某一部分的阴影
+up=which.min(abs(unlist(cc0[,3])-unlist(tar_data)))
+Dis_min=abs(cc0[up,3]-tar_data[,2])
+y_shaded &lt;- seq(-1, Dis_min, length.out = 50)  # 需要阴影的 y 范围
+x_shaded &lt;- dnorm(y_shaded, mean = mean_gaussian, sd = sd_gaussian)  # 计算阴影区域的高斯分布值
+x_shaded &lt;- x_shaded / max(x_shaded) * 0.2  # 调整宽度
+polygon(c(x_shaded + sel, rep(sel, length(y_shaded))), c(y_shaded, rev(y_shaded)), col=rgb(0, 0, 1, 0.3), border = NA)  # 添加阴影
+
+# 绘制其他数据
+par(new=T)
+plot(unlist(total.data.x), unlist(total.data.y), xaxt=&quot;n&quot;, type=&quot;l&quot;, lty=2, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=&quot;red&quot;, lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+points(unlist(cc0[,2]), unlist(cc0[,3]), pch=20, col=brewer.pal(9, &quot;Oranges&quot;)[5], cex=1.7)
+abline(h=unlist(tar_data), type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r">abline(h=Dis_min, type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r">#abline(h=tar_data[,2]-Dis_min, type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+text(x = 0.02, y = tar_data[,2]+0.035, labels = &quot;t&quot;, cex = 1, font=1.7)
+text(x = 0.04, y = tar_data[,2]+Dis_min+0.035, labels = &quot;min|y-t|&quot;, cex = 1, font=1.7)
+#text(x = 0.05, y = tar_data[,2]-Dis_min+0.035, labels = &quot;t-y_t.min&quot;, cex = 1, font=1.7)
+
+
+
+
+
+plot(aa1[,&quot;x&quot;], aa1[,&quot;mean&quot;], type=&quot;l&quot;,  ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=&quot;blue&quot;, lwd=1.5, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+polygon(c(aa1[,&quot;x&quot;],rev(aa1[,&quot;x&quot;])), c(aa1[,&quot;lower&quot;], rev(aa1[,&quot;upper&quot;])), col=brewer.pal(9, &quot;Purples&quot;)[3], border = brewer.pal(9, &quot;Purples&quot;)[3])
+lines(aa1[,&quot;x&quot;], aa1[,&quot;mean&quot;], type=&quot;l&quot;,  xlab=&quot;x&quot;, ylab=&quot;y&quot;, col=brewer.pal(9, &quot;Purples&quot;)[8], lwd=1.5)
+text(x = 0.93, y = -0.9, labels = &quot;#=1&quot;,cex = 1.4,font=1.7 )
+text(x = 0.5, y = -0.9, labels = &quot;EGO&quot;, cex = 1.4, font=1.7)
+par(new=T)
+plot(unlist(total.data.x),unlist(total.data.y), xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,type=&quot;l&quot;, lty=2, ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=&quot;red&quot;, lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+points(unlist(cc0[,2]),unlist(cc0[,3]), pch=20,col=brewer.pal(9, &quot;Oranges&quot;)[5],cex=1.7)
+points(unlist(cc1[5,2]),unlist(cc1[5,3]), pch=20,col=&quot;red&quot;,cex=1.7)
+abline(h=unlist(tar_data),type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r"># 绘制竖直的高斯分布在 x = 0.5 处
+sel=bb1[which(bb1[,3]==max(bb1[,3])),2]
+sel.num=which(bb1[,3]==max(bb1[,3]))
+y_gaussian &lt;- seq(-1, 0.65, length.out = 100)  # 高斯分布的 y 范围
+mean_gaussian &lt;- aa1[sel.num,&quot;mean&quot;]  # 高斯分布的均值（中心位置）
+sd_gaussian &lt;- 2*(aa1[sel.num,&quot;mean&quot;]-aa1[sel.num,&quot;lower&quot;])  # 高斯分布的标准差
+x_gaussian &lt;- dnorm(y_gaussian, mean = mean_gaussian, sd = sd_gaussian)  # 高斯分布的概率密度函数
+x_gaussian &lt;- x_gaussian / max(x_gaussian) * 0.2  # 调整宽度以适应图形范围
+
+# 添加竖直的高斯分布曲线
+lines(x_gaussian + sel, y_gaussian, col=&quot;blue&quot;, lwd=1.5, lty=2)  # 将高斯分布平移至 x = 0.5 处
+
+# 添加高斯分布某一部分的阴影
+up=which.min(abs(unlist(cc1[,3])-unlist(tar_data)))
+</code></pre>
+<pre><code>## Warning in unlist(cc1[, 3]) - unlist(tar_data):
+## 长的对象长度不是短的对象长度的整倍数
+</code></pre>
+<pre><code class="language-r">Dis_min=abs(cc1[up,3]-tar_data[,2])
+y_shaded &lt;- seq(-1, Dis_min, length.out = 50)  # 需要阴影的 y 范围
+x_shaded &lt;- dnorm(y_shaded, mean = mean_gaussian, sd = sd_gaussian)  # 计算阴影区域的高斯分布值
+x_shaded &lt;- x_shaded / max(x_shaded) * 0.2  # 调整宽度
+polygon(c(x_shaded + sel, rep(sel, length(y_shaded))), c(y_shaded, rev(y_shaded)), col=rgb(0, 0, 1, 0.3), border = NA)  # 添加阴影
+
+
+# 绘制其他数据
+par(new=T)
+plot(unlist(total.data.x), unlist(total.data.y), xaxt=&quot;n&quot;, type=&quot;l&quot;, lty=2, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=&quot;red&quot;, lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+points(unlist(cc1[,2]), unlist(cc1[,3]), pch=20, col=brewer.pal(9, &quot;Oranges&quot;)[5], cex=1.7)
+abline(h=unlist(tar_data), type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r">abline(h=Dis_min, type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r">#abline(h=tar_data[,2]-Dis_min, type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+text(x = 0.02, y = tar_data[,2]+0.035, labels = &quot;t&quot;, cex = 1, font=1.7)
+text(x = 0.04, y = tar_data[,2]+Dis_min+0.035, labels = &quot;min|y-t|&quot;, cex = 1, font=1.7)
+#text(x = 0.05, y = tar_data[,2]-Dis_min+0.035, labels = &quot;t-y_t.min&quot;, cex = 1, font=1.7)
+
+
+####################################
+plot(aa5[,&quot;x&quot;], aa5[,&quot;mean&quot;],xaxt=&quot;n&quot;, yaxt=&quot;n&quot;, type=&quot;l&quot;,  ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=&quot;blue&quot;, lwd=1.5, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+polygon(c(aa5[,&quot;x&quot;],rev(aa5[,&quot;x&quot;])), c(aa5[,&quot;lower&quot;], rev(aa5[,&quot;upper&quot;])), col=brewer.pal(9, &quot;Purples&quot;)[3], border = brewer.pal(9, &quot;Purples&quot;)[3])
+lines(aa5[,&quot;x&quot;], aa5[,&quot;mean&quot;], type=&quot;l&quot;,  xlab=&quot;x&quot;, ylab=&quot;y&quot;, col=brewer.pal(9, &quot;Purples&quot;)[8], lwd=1.5)
+text(x = 0.93, y =  -0.9, labels = &quot;#=2&quot;,cex = 1.4,font=1.7 )
+text(x = 0.5, y = -0.9, labels = &quot;EGO&quot;, cex = 1.4, font=1.7)
+par(new=T)
+plot(unlist(total.data.x),unlist(total.data.y), xaxt=&quot;n&quot;, yaxt=&quot;n&quot;,type=&quot;l&quot;, lty=2, ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=&quot;red&quot;, lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+points(unlist(cc1[,2]),unlist(cc1[,3]), pch=20,col=brewer.pal(9, &quot;Oranges&quot;)[5],cex=1.7)
+points(unlist(cc2[6,2]),unlist(cc2[6,3]), pch=20,col=&quot;red&quot;,cex=1.7)
+abline(h=unlist(tar_data),type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;,xlab=&quot;x&quot;,col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r"># 绘制竖直的高斯分布在 x = 0.5 处
+sel=bb5[which(bb5[,3]==max(bb5[,3])),2]
+sel.num=which(bb5[,3]==max(bb5[,3]))
+y_gaussian &lt;- seq(-1, 0.65, length.out = 100)  # 高斯分布的 y 范围
+mean_gaussian &lt;- aa5[sel.num,&quot;mean&quot;]  # 高斯分布的均值（中心位置）
+sd_gaussian &lt;- 2*(aa5[sel.num,&quot;mean&quot;]-aa5[sel.num,&quot;lower&quot;])  # 高斯分布的标准差
+x_gaussian &lt;- dnorm(y_gaussian, mean = mean_gaussian, sd = sd_gaussian)  # 高斯分布的概率密度函数
+x_gaussian &lt;- x_gaussian / max(x_gaussian) * 0.2  # 调整宽度以适应图形范围
+
+# 添加竖直的高斯分布曲线
+lines(x_gaussian + sel, y_gaussian, col=&quot;blue&quot;, lwd=1.5, lty=2)  # 将高斯分布平移至 x = 0.5 处
+
+# 添加高斯分布某一部分的阴影
+up=which.min(abs(unlist(cc2[,3])-unlist(tar_data)))
+Dis_min=abs(cc2[up,3]-tar_data[,2])
+y_shaded &lt;- seq(-1, Dis_min, length.out = 50)  # 需要阴影的 y 范围
+x_shaded &lt;- dnorm(y_shaded, mean = mean_gaussian, sd = sd_gaussian)  # 计算阴影区域的高斯分布值
+x_shaded &lt;- x_shaded / max(x_shaded) * 0.19  # 调整宽度
+polygon(c(x_shaded + sel, rep(sel, length(y_shaded))), c(y_shaded, rev(y_shaded)), col=rgb(0, 0, 1, 0.3), border = NA)  # 添加阴影
+
+
+# 绘制其他数据
+par(new=T)
+plot(unlist(total.data.x), unlist(total.data.y), xaxt=&quot;n&quot;, type=&quot;l&quot;, lty=2, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=&quot;red&quot;, lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+points(unlist(cc2[,2]), unlist(cc2[,3]), pch=20, col=brewer.pal(9, &quot;Oranges&quot;)[5], cex=1.7)
+abline(h=unlist(tar_data), type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r">abline(h=Dis_min, type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+</code></pre>
+<pre><code>## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数&quot;type&quot;已过期不用了
+</code></pre>
+<pre><code class="language-r">#abline(h=tar_data[,2]-Dis_min, type=&quot;l&quot;, lty=3, ylab=&quot;y&quot;, xlab=&quot;x&quot;, col=brewer.pal(9, &quot;Oranges&quot;)[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+text(x = 0.02, y = tar_data[,2]+0.035, labels = &quot;t&quot;, cex = 1, font=1.7)
+text(x = 0.04, y = tar_data[,2]+Dis_min+0.035, labels = &quot;min|y-t|&quot;, cex = 1, font=1.7)
+</code></pre>
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-1" /></p>
+<pre><code class="language-r">#text(x = 0.05, y = tar_data[,2]-Dis_min+0.035, labels = &quot;t-y_t.min&quot;, cex = 1, font=1.7)
 </code></pre>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js" defer></script>

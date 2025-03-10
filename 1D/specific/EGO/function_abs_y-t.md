@@ -2,7 +2,8 @@
 
 ```r
 library("DiceKriging")
-
+library(rPref)
+library(dplyr)
 ######km model
 fn.gp = function(training.data.x, training.data.y,virtual.data.x){ 
   set.seed(123) 

@@ -1,7 +1,7 @@
 
 
 ```r
-setwd("C:\\Users\\12758\\Desktop\\final-submit target\\revised\\target_oriented\\1D-visualization\\specific\\traditional EGO\\Rmarkdown")
+setwd("C:\\Users\\12758\\Desktop\\target_oriented_BO\\1D\\specific\\EGO")
 
 library(RColorBrewer)
 
@@ -40,7 +40,7 @@ colnames(total.data.y)="es"
 ym=0.032########ylim of utility plot
 
 #display.brewer.all(type = "seq")
-#pdf("EGO1.pdf",width=11.7,height=6)
+#pdf("EGO.pdf",width=11.7,height=6)
 par(mfrow = c(2,6),mai=c(0.07,0.05,0.07,0.05),omi=c(1.5,0.3,1.5,0.1))
 
 #Plot 1-1
@@ -198,5 +198,214 @@ plot(bb50[,2],bb50[,3],xaxt="n", yaxt="n",type="l", xlab="x", ylab="y",col=brewe
 
 ```r
 #dev.off()
+
+
+par(mfrow = c(1,3),mai=c(0.07,0.8,0.07,0.05),omi=c(1.5,0.3,1.5,0.1))
+# 绘制均值曲线和置信区间
+plot(aa0[,"x"], aa0[,"mean"], type="l", ylab="y", xlab="x", col="black", lwd=1.5, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+polygon(c(aa0[,"x"], rev(aa0[,"x"])), c(aa0[,"lower"], rev(aa0[,"upper"])), col=brewer.pal(9, "Purples")[3], border = brewer.pal(9, "Purples")[3])
+lines(aa0[,"x"], aa0[,"mean"], type="l", xlab="x", ylab="y", col=brewer.pal(9, "Purples")[8], lwd=1.5)
+
+# 添加文本标签
+text(x = 0.93, y = -0.9, labels = "#=0", cex = 1.4, font=1.7)
+text(x = 0.5, y = -0.9, labels = "EGO", cex = 1.4, font=1.7)
+
+# 绘制竖直的高斯分布在 x = 0.5 处
+sel=bb0[which(bb0[,3]==max(bb0[,3])),2]
+sel.num=which(bb0[,3]==max(bb0[,3]))
+y_gaussian <- seq(-1, 0.65, length.out = 100)  # 高斯分布的 y 范围
+mean_gaussian <- aa0[sel.num,"mean"]  # 高斯分布的均值（中心位置）
+sd_gaussian <- 2*(aa0[sel.num,"mean"]-aa0[sel.num,"lower"])  # 高斯分布的标准差
+x_gaussian <- dnorm(y_gaussian, mean = mean_gaussian, sd = sd_gaussian)  # 高斯分布的概率密度函数
+x_gaussian <- x_gaussian / max(x_gaussian) * 0.2  # 调整宽度以适应图形范围
+
+# 添加竖直的高斯分布曲线
+lines(x_gaussian + sel, y_gaussian, col="blue", lwd=1.5, lty=2)  # 将高斯分布平移至 x = 0.5 处
+
+# 添加高斯分布某一部分的阴影
+up=which.min(abs(unlist(cc0[,3])-unlist(tar_data)))
+Dis_min=abs(cc0[up,3]-tar_data[,2])
+y_shaded <- seq(-1, Dis_min, length.out = 50)  # 需要阴影的 y 范围
+x_shaded <- dnorm(y_shaded, mean = mean_gaussian, sd = sd_gaussian)  # 计算阴影区域的高斯分布值
+x_shaded <- x_shaded / max(x_shaded) * 0.2  # 调整宽度
+polygon(c(x_shaded + sel, rep(sel, length(y_shaded))), c(y_shaded, rev(y_shaded)), col=rgb(0, 0, 1, 0.3), border = NA)  # 添加阴影
+
+# 绘制其他数据
+par(new=T)
+plot(unlist(total.data.x), unlist(total.data.y), xaxt="n", type="l", lty=2, ylab="y", xlab="x", col="red", lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+points(unlist(cc0[,2]), unlist(cc0[,3]), pch=20, col=brewer.pal(9, "Oranges")[5], cex=1.7)
+abline(h=unlist(tar_data), type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+```
+
+```
+## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数"type"已过期不用了
+```
+
+```r
+abline(h=Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+```
+
+```
+## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数"type"已过期不用了
+```
+
+```r
+#abline(h=tar_data[,2]-Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+text(x = 0.02, y = tar_data[,2]+0.035, labels = "t", cex = 1, font=1.7)
+text(x = 0.04, y = tar_data[,2]+Dis_min+0.035, labels = "min|y-t|", cex = 1, font=1.7)
+#text(x = 0.05, y = tar_data[,2]-Dis_min+0.035, labels = "t-y_t.min", cex = 1, font=1.7)
+
+
+
+
+
+plot(aa1[,"x"], aa1[,"mean"], type="l",  ylab="y",xlab="x",col="blue", lwd=1.5, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+polygon(c(aa1[,"x"],rev(aa1[,"x"])), c(aa1[,"lower"], rev(aa1[,"upper"])), col=brewer.pal(9, "Purples")[3], border = brewer.pal(9, "Purples")[3])
+lines(aa1[,"x"], aa1[,"mean"], type="l",  xlab="x", ylab="y", col=brewer.pal(9, "Purples")[8], lwd=1.5)
+text(x = 0.93, y = -0.9, labels = "#=1",cex = 1.4,font=1.7 )
+text(x = 0.5, y = -0.9, labels = "EGO", cex = 1.4, font=1.7)
+par(new=T)
+plot(unlist(total.data.x),unlist(total.data.y), xaxt="n", yaxt="n",type="l", lty=2, ylab="y",xlab="x",col="red", lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+points(unlist(cc0[,2]),unlist(cc0[,3]), pch=20,col=brewer.pal(9, "Oranges")[5],cex=1.7)
+points(unlist(cc1[5,2]),unlist(cc1[5,3]), pch=20,col="red",cex=1.7)
+abline(h=unlist(tar_data),type="l", lty=3, ylab="y",xlab="x",col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+```
+
+```
+## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数"type"已过期不用了
+```
+
+```r
+# 绘制竖直的高斯分布在 x = 0.5 处
+sel=bb1[which(bb1[,3]==max(bb1[,3])),2]
+sel.num=which(bb1[,3]==max(bb1[,3]))
+y_gaussian <- seq(-1, 0.65, length.out = 100)  # 高斯分布的 y 范围
+mean_gaussian <- aa1[sel.num,"mean"]  # 高斯分布的均值（中心位置）
+sd_gaussian <- 2*(aa1[sel.num,"mean"]-aa1[sel.num,"lower"])  # 高斯分布的标准差
+x_gaussian <- dnorm(y_gaussian, mean = mean_gaussian, sd = sd_gaussian)  # 高斯分布的概率密度函数
+x_gaussian <- x_gaussian / max(x_gaussian) * 0.2  # 调整宽度以适应图形范围
+
+# 添加竖直的高斯分布曲线
+lines(x_gaussian + sel, y_gaussian, col="blue", lwd=1.5, lty=2)  # 将高斯分布平移至 x = 0.5 处
+
+# 添加高斯分布某一部分的阴影
+up=which.min(abs(unlist(cc1[,3])-unlist(tar_data)))
+```
+
+```
+## Warning in unlist(cc1[, 3]) - unlist(tar_data):
+## 长的对象长度不是短的对象长度的整倍数
+```
+
+```r
+Dis_min=abs(cc1[up,3]-tar_data[,2])
+y_shaded <- seq(-1, Dis_min, length.out = 50)  # 需要阴影的 y 范围
+x_shaded <- dnorm(y_shaded, mean = mean_gaussian, sd = sd_gaussian)  # 计算阴影区域的高斯分布值
+x_shaded <- x_shaded / max(x_shaded) * 0.2  # 调整宽度
+polygon(c(x_shaded + sel, rep(sel, length(y_shaded))), c(y_shaded, rev(y_shaded)), col=rgb(0, 0, 1, 0.3), border = NA)  # 添加阴影
+
+
+# 绘制其他数据
+par(new=T)
+plot(unlist(total.data.x), unlist(total.data.y), xaxt="n", type="l", lty=2, ylab="y", xlab="x", col="red", lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+points(unlist(cc1[,2]), unlist(cc1[,3]), pch=20, col=brewer.pal(9, "Oranges")[5], cex=1.7)
+abline(h=unlist(tar_data), type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+```
+
+```
+## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数"type"已过期不用了
+```
+
+```r
+abline(h=Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+```
+
+```
+## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数"type"已过期不用了
+```
+
+```r
+#abline(h=tar_data[,2]-Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+text(x = 0.02, y = tar_data[,2]+0.035, labels = "t", cex = 1, font=1.7)
+text(x = 0.04, y = tar_data[,2]+Dis_min+0.035, labels = "min|y-t|", cex = 1, font=1.7)
+#text(x = 0.05, y = tar_data[,2]-Dis_min+0.035, labels = "t-y_t.min", cex = 1, font=1.7)
+
+
+####################################
+plot(aa5[,"x"], aa5[,"mean"],xaxt="n", yaxt="n", type="l",  ylab="y",xlab="x",col="blue", lwd=1.5, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+polygon(c(aa5[,"x"],rev(aa5[,"x"])), c(aa5[,"lower"], rev(aa5[,"upper"])), col=brewer.pal(9, "Purples")[3], border = brewer.pal(9, "Purples")[3])
+lines(aa5[,"x"], aa5[,"mean"], type="l",  xlab="x", ylab="y", col=brewer.pal(9, "Purples")[8], lwd=1.5)
+text(x = 0.93, y =  -0.9, labels = "#=2",cex = 1.4,font=1.7 )
+text(x = 0.5, y = -0.9, labels = "EGO", cex = 1.4, font=1.7)
+par(new=T)
+plot(unlist(total.data.x),unlist(total.data.y), xaxt="n", yaxt="n",type="l", lty=2, ylab="y",xlab="x",col="red", lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+points(unlist(cc1[,2]),unlist(cc1[,3]), pch=20,col=brewer.pal(9, "Oranges")[5],cex=1.7)
+points(unlist(cc2[6,2]),unlist(cc2[6,3]), pch=20,col="red",cex=1.7)
+abline(h=unlist(tar_data),type="l", lty=3, ylab="y",xlab="x",col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01,font=2,font.lab=2,ylim=c(-1,0.65),cex.axis=1.2,cex.lab=1.2)
+```
+
+```
+## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数"type"已过期不用了
+```
+
+```r
+# 绘制竖直的高斯分布在 x = 0.5 处
+sel=bb5[which(bb5[,3]==max(bb5[,3])),2]
+sel.num=which(bb5[,3]==max(bb5[,3]))
+y_gaussian <- seq(-1, 0.65, length.out = 100)  # 高斯分布的 y 范围
+mean_gaussian <- aa5[sel.num,"mean"]  # 高斯分布的均值（中心位置）
+sd_gaussian <- 2*(aa5[sel.num,"mean"]-aa5[sel.num,"lower"])  # 高斯分布的标准差
+x_gaussian <- dnorm(y_gaussian, mean = mean_gaussian, sd = sd_gaussian)  # 高斯分布的概率密度函数
+x_gaussian <- x_gaussian / max(x_gaussian) * 0.2  # 调整宽度以适应图形范围
+
+# 添加竖直的高斯分布曲线
+lines(x_gaussian + sel, y_gaussian, col="blue", lwd=1.5, lty=2)  # 将高斯分布平移至 x = 0.5 处
+
+# 添加高斯分布某一部分的阴影
+up=which.min(abs(unlist(cc2[,3])-unlist(tar_data)))
+Dis_min=abs(cc2[up,3]-tar_data[,2])
+y_shaded <- seq(-1, Dis_min, length.out = 50)  # 需要阴影的 y 范围
+x_shaded <- dnorm(y_shaded, mean = mean_gaussian, sd = sd_gaussian)  # 计算阴影区域的高斯分布值
+x_shaded <- x_shaded / max(x_shaded) * 0.19  # 调整宽度
+polygon(c(x_shaded + sel, rep(sel, length(y_shaded))), c(y_shaded, rev(y_shaded)), col=rgb(0, 0, 1, 0.3), border = NA)  # 添加阴影
+
+
+# 绘制其他数据
+par(new=T)
+plot(unlist(total.data.x), unlist(total.data.y), xaxt="n", type="l", lty=2, ylab="y", xlab="x", col="red", lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+points(unlist(cc2[,2]), unlist(cc2[,3]), pch=20, col=brewer.pal(9, "Oranges")[5], cex=1.7)
+abline(h=unlist(tar_data), type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+```
+
+```
+## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数"type"已过期不用了
+```
+
+```r
+abline(h=Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+```
+
+```
+## Warning in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...):
+## 图形参数"type"已过期不用了
+```
+
+```r
+#abline(h=tar_data[,2]-Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+text(x = 0.02, y = tar_data[,2]+0.035, labels = "t", cex = 1, font=1.7)
+text(x = 0.04, y = tar_data[,2]+Dis_min+0.035, labels = "min|y-t|", cex = 1, font=1.7)
+```
+
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-2.png)
+
+```r
+#text(x = 0.05, y = tar_data[,2]-Dis_min+0.035, labels = "t-y_t.min", cex = 1, font=1.7)
 ```
 

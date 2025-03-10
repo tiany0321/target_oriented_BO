@@ -1,4 +1,4 @@
-setwd("C:\\Users\\12758\\Desktop\\final-submit target\\revised\\target_oriented\\1D-visualization\\specific\\traditional EGO\\Rmarkdown")
+setwd("C:\\Users\\12758\\Desktop\\target_oriented_BO\\1D\\specific\\EGO")
 
 library(RColorBrewer)
 
