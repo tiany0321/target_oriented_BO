@@ -14,7 +14,7 @@ The accompanying documentation includes codes for implementing t-EGO, along with
 >>>>##### (3) Pure exploitation (PureExp)
 
 >>#### 1.2.2 Acquisition Functions for Minimizing |y - t|
->>>>##### (1) Efficient Global Optimization EGO
+>>>>##### (1) Efficient Global Optimization (EGO)
 >>>>##### (2) Multi-objective acquisition Functions (MOAF)
 
 ### 1.3 Graphical Illustrations Depicting the Evolution of t-EI and EI as the Function is Queried
