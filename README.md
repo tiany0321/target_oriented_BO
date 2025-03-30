@@ -9,27 +9,27 @@ To test t-EGO, evaluations were conducted on some databases. The 1D/specific fol
 
 ###  1.1 1-Dimensional Mathematical Function
 
-### 1.2 Acquisition Functions
->>#### 1.2.1 Acquisition Functions for identifying the option with y=t
+### 1.2 BO Methods
+>>#### 1.2.1 BO Methods for identifying the option with y=t
 >>>>##### (1) Target-oriented EGO (t-EGO)
 >>>>##### (2) Constrained EGO (CEGO)
 >>>>##### (3) Pure exploitation (PureExp)
 
->>#### 1.2.2 Acquisition Functions for Minimizing |y - t|
+>>#### 1.2.2 BO Methods for Minimizing |y - t|
 >>>>##### (1) Efficient Global Optimization (EGO)
 >>>>##### (2) Multi-objective acquisition Functions (MOAF)
 
 ### 1.3 Graphical Illustrations Depicting the Evolution of t-EI and EI as the Function is Queried
 
 ## 2. Test on STYTANG function(6D)
-### 2.1 Acquisition Functions
->>#### 2.1.1 Acquisition Functions for identifying the option with y=t
+### 2.1 BO Methods
+>>#### 2.1.1 BO Methods for identifying the option with y=t
 >>>>##### (1) Target-oriented EGO (t-EGO)
 >>>>##### (2) Constrained EGO (CEGO)
 >>>>##### (3) Pure exploitation (PureExp)
 >>>>##### (4) Thompson sampling (TS)
 
->>#### 2.1.2 Acquisition Functions for Minimizing |y - t|
+>>#### 2.1.2 BO Methods for Minimizing |y - t|
 >>>>##### (1) Efficient Global Optimization EGO
 >>>>##### (2) Lower confidence boundary (LCB)
 >>>>##### (3) Probability Improvement (PI)
