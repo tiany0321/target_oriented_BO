@@ -5,7 +5,7 @@ The accompanying documentation includes codes for implementing t-EGO, along with
 
 To test t-EGO, evaluations were conducted on some databases. The 1D/specific folder contains annotations for the program.
 
-## 1. Iterative Optimization Process of Different Acquisition Functions in a 1-Dimensional Mathematical Function Case
+## 1. Iterative Optimization Process of Different BO Methods in a 1-Dimensional Mathematical Function Case
 
 ###  1.1 1-Dimensional Mathematical Function
 
