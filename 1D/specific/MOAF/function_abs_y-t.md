@@ -1,3 +1,6 @@
+
+
+```r
 library("DiceKriging")
 library(rPref)
 library(dplyr)
@@ -177,3 +180,5 @@ fn.dis=function(realdata,pre_actual){
 f11_xiong <- function(x){ 
   return( sin(4 * (x - 1.3)^4) * cos( (x - 1.4)) + (x - 0.9) / 2)
 }
+```
+
