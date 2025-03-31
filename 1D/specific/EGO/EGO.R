@@ -7,6 +7,8 @@ estimator=1########EGO
 ##############create data
 total.data.x <- as.data.frame(seq(0, 1, , 200))
 colnames(total.data.x)="x"
+write.csv(total.data.x,"total.data.x.csv")
+
 total.data.y <- as.data.frame(f11_xiong(total.data.x))
 colnames(total.data.y)="es"
 order.data=as.data.frame(rep(1:nrow(total.data.x)))
@@ -18,6 +20,8 @@ tar=24
 tar.points=data.training[which(abs(data.training[,"es"]-data.training[tar,"es"])<=0.01*(max(data.training[,"es"])-min(data.training[,"es"]))),]
 tar_data=data.training[tar,"es"]
 data.training$pro.es=abs(data.training$es-tar_data)
+write.csv(data.training$pro.es,"total.data.y.csv")
+tar_data=min(data.training$pro.es)
 write.csv(tar_data,"tar_data.csv")
 
 print(paste("The targeted y:", tar_data))

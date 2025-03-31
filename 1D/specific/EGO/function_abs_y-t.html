@@ -169,7 +169,7 @@ fn.utility=function(data.training,estimator,training.data,infj,tar_num){
   if (estimator==1){ 
     fn.ego.ei = function(training.data,infj)
     {
-      ego = (min(training.data[,&quot;es&quot;]) - infj[,&quot;mean&quot;])/infj[,&quot;sd&quot;]
+      ego = (min(training.data[,&quot;pro.es&quot;]) - infj[,&quot;mean&quot;])/infj[,&quot;sd&quot;]
       z = ego
       ei.ego = infj[,&quot;sd&quot;]*z*pnorm(z) + infj[,&quot;sd&quot;]*dnorm(z) 
       ei.ego = data.frame(ei.ego)
@@ -185,7 +185,7 @@ fn.utility=function(data.training,estimator,training.data,infj,tar_num){
   if (estimator==2){ 
     fn.PI.ei = function(training.data,infj)
     {
-      PI = (min(training.data[,&quot;es&quot;]) - infj[,&quot;mean&quot;])/infj[,&quot;sd&quot;]
+      PI = (min(training.data[,&quot;pro.es&quot;]) - infj[,&quot;mean&quot;])/infj[,&quot;sd&quot;]
       z = PI
       ei.PI = pnorm(z) 
       ei.PI = data.frame(ei.PI)
@@ -239,7 +239,7 @@ fn.utility=function(data.training,estimator,training.data,infj,tar_num){
   if (estimator==5){ 
     fn.ego.ei = function(training.data,infj)
     {
-      ego = (min(training.data[,&quot;es&quot;]) - infj[,&quot;mean&quot;])/infj[,&quot;sd&quot;]
+      ego = (min(training.data[,&quot;pro.es&quot;]) - infj[,&quot;mean&quot;])/infj[,&quot;sd&quot;]
       z = ego
       ei.ego = infj[,&quot;sd&quot;]*z*pnorm(z) + infj[,&quot;sd&quot;]*dnorm(z) 
       ei.ego = data.frame(ei.ego)
@@ -252,7 +252,7 @@ fn.utility=function(data.training,estimator,training.data,infj,tar_num){
     
     fn.PI.ei = function(training.data,infj)
     {
-      PI = (min(training.data[,&quot;es&quot;]) - infj[,&quot;mean&quot;])/infj[,&quot;sd&quot;]
+      PI = (min(training.data[,&quot;pro.es&quot;]) - infj[,&quot;mean&quot;])/infj[,&quot;sd&quot;]
       z = PI
       ei.PI = pnorm(z) 
       ei.PI = data.frame(ei.PI)
