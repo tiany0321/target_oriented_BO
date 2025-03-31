@@ -6,8 +6,12 @@ estimator=3########t-EGO
 ##############create data
 total.data.x <- as.data.frame(seq(0, 1, , 200))
 colnames(total.data.x)="x"
+write.csv(total.data.x,"total.data.x.csv")
+
 total.data.y <- as.data.frame(f11_xiong(total.data.x))
 colnames(total.data.y)="es"
+write.csv(total.data.y,"total.data.y.csv")
+
 order.data=as.data.frame(rep(1:nrow(total.data.x)))
 colnames(order.data)="order.num"
 data.training=cbind(total.data.x,total.data.y,order.data)
@@ -67,8 +71,8 @@ write.csv(yy0,"yy0.csv")
 head(yy0)
 
 ##########data frame
-data.OC.SD=matrix(,length(iter)-1,length(selector))
-data.dis=matrix(,length(iter)-1,length(selector))
+data.OC.SD=matrix(,length(iter)-1,1)
+data.dis=matrix(,length(iter)-1,1)
 SD=matrix(0,length(iter),1)
 dis=matrix(0,length(iter),1)
 

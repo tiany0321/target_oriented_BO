@@ -1,6 +1,10 @@
 
 
 ```r
+knitr::opts_chunk$set(fig.width = 10, fig.height = 5.5,out.width="100%", dpi = 300)
+#print(knitr::opts_chunk$get("fig.width"))  # 
+#print(knitr::opts_chunk$get("fig.height"))  # 
+
 setwd("C:\\Users\\12758\\Desktop\\target_oriented_BO\\1D\\specific\\t-EGO")
 library(RColorBrewer)
 
@@ -24,19 +28,11 @@ cc3=read.csv("3train.csv")
 cc4=read.csv("4train.csv")
 cc5=read.csv("5train.csv")
 cc6=read.csv("6train.csv")
-tar_data=read.csv("tar_data.csv")
+tar_data=read.csv("tar_data.csv", row.names = 1)
+total.data.x=read.csv("total.data.x.csv", row.names = 1)
+total.data.y=read.csv("total.data.y.csv", row.names = 1)
 
 ym=0.16########ylim of utility plot
-##############1D function
-f11_xiong <- function(x){ 
-  return( sin(4 * (x - 1.3)^4) * cos( (x - 1.4)) + (x - 0.9) / 2)
-}
-
-tar=24
-total.data.x <- as.data.frame(seq(0, 1, , 200))
-colnames(total.data.x)="x"
-total.data.y <- as.data.frame(f11_xiong(total.data.x))
-colnames(total.data.y)="es"
 
 
 #display.brewer.all(type = "seq")
@@ -193,7 +189,10 @@ par(new=T)
 plot(bb50[,2],bb50[,3],xaxt="n", yaxt="n",type="l", xlab="x", ylab="y",col=brewer.pal(9, "Greens")[8],ylim=c(0,ym), lwd=1,tck=0.01,font=2,font.lab=2,cex.axis=1.2,cex.lab=1.2)
 ```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png)
+<div class="figure">
+<img src="figure/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-1</p>
+</div>
 
 ```r
 #dev.off()
@@ -227,8 +226,8 @@ lines(x_gaussian + sel, y_gaussian, col="blue", lwd=1.5, lty=2)  #
 
 # Add shading to a portion of the Gaussian distribution.
 up=which.min(abs(unlist(cc0[,3])-unlist(tar_data)))
-Dis_min=abs(cc0[up,3]-tar_data[,2])
-y_shaded <- seq(tar_data[,2]-Dis_min, tar_data[,2]+Dis_min, length.out = 50)   # limits
+Dis_min=abs(cc0[up,3]-tar_data[,1])
+y_shaded <- seq(tar_data[,1]-Dis_min, tar_data[,1]+Dis_min, length.out = 50)   # limits
 x_shaded <- dnorm(y_shaded, mean = mean_gaussian, sd = sd_gaussian)  # Calculate the Gaussian distribution value of the shaded region.
 x_shaded <- x_shaded / max(x_shaded) * 0.2  # 调整宽度
 polygon(c(x_shaded + sel, rep(sel, length(y_shaded))), c(y_shaded, rev(y_shaded)), col=rgb(0, 0, 1, 0.3), border = NA)  #
@@ -246,7 +245,7 @@ abline(h=unlist(tar_data), type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9
 ```
 
 ```r
-abline(h=tar_data[,2]+Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+abline(h=tar_data[,1]+Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
 ```
 
 ```
@@ -255,7 +254,7 @@ abline(h=tar_data[,2]+Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.p
 ```
 
 ```r
-abline(h=tar_data[,2]-Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+abline(h=tar_data[,1]-Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
 ```
 
 ```
@@ -264,9 +263,10 @@ abline(h=tar_data[,2]-Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.p
 ```
 
 ```r
-text(x = 0.02, y = tar_data[,2]+0.035, labels = "t", cex = 1, font=1.7)
-text(x = 0.04, y = tar_data[,2]+Dis_min+0.035, labels = "y_t.min", cex = 1, font=1.7)
-text(x = 0.05, y = tar_data[,2]-Dis_min+0.035, labels = "t-y_t.min", cex = 1, font=1.7)
+text(x = 0.02, y = tar_data[,1]+0.035, labels = "t", cex = 1.4, font=1.7)
+text(x = 0.04, y = tar_data[,1]+Dis_min+0.035, expression(y[t.min]), cex = 1.4, font=1.7)
+text(x = 0.08, y = tar_data[,1]-Dis_min+0.035, expression(t-y[t.min]),  cex = 1.4, font=1.7)
+
 
 
 
@@ -305,16 +305,8 @@ lines(x_gaussian + sel, y_gaussian, col="blue", lwd=1.5, lty=2)  #
 
 # Add shading to a portion of the Gaussian distribution.
 up=which.min(abs(unlist(cc1[,3])-unlist(tar_data)))
-```
-
-```
-## Warning in unlist(cc1[, 3]) - unlist(tar_data):
-## 长的对象长度不是短的对象长度的整倍数
-```
-
-```r
-Dis_min=abs(cc1[up,3]-tar_data[,2])
-y_shaded <- seq(tar_data[,2]-Dis_min, tar_data[,2]+Dis_min, length.out = 50)   # limits
+Dis_min=abs(cc1[up,3]-tar_data[,1])
+y_shaded <- seq(tar_data[,1]-Dis_min, tar_data[,1]+Dis_min, length.out = 50)   # limits
 x_shaded <- dnorm(y_shaded, mean = mean_gaussian, sd = sd_gaussian)  # Calculate the Gaussian distribution value of the shaded region.
 x_shaded <- x_shaded / max(x_shaded) * 0.2  # justify the width
 polygon(c(x_shaded + sel, rep(sel, length(y_shaded))), c(y_shaded, rev(y_shaded)), col=rgb(0, 0, 1, 0.3), border = NA)  # add shadow
@@ -333,7 +325,7 @@ abline(h=unlist(tar_data), type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9
 ```
 
 ```r
-abline(h=tar_data[,2]+Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+abline(h=tar_data[,1]+Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
 ```
 
 ```
@@ -342,7 +334,7 @@ abline(h=tar_data[,2]+Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.p
 ```
 
 ```r
-abline(h=tar_data[,2]-Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+abline(h=tar_data[,1]-Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
 ```
 
 ```
@@ -351,9 +343,9 @@ abline(h=tar_data[,2]-Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.p
 ```
 
 ```r
-text(x = 0.02, y = tar_data[,2]+0.035, labels = "t", cex = 1, font=1.7)
-text(x = 0.04, y = tar_data[,2]+Dis_min+0.035, labels = "y_t.min", cex = 1, font=1.7)
-text(x = 0.05, y = tar_data[,2]-Dis_min+0.035, labels = "t-y_t.min", cex = 1, font=1.7)
+text(x = 0.02, y = tar_data[,1]+0.035, labels = "t", cex = 1.4, font=1.7)
+text(x = 0.04, y = tar_data[,1]+Dis_min+0.035, expression(y[t.min]), cex = 1.4, font=1.7)
+text(x = 0.08, y = tar_data[,1]-Dis_min+0.035, expression(t-y[t.min]),  cex = 1.4, font=1.7)
 
 
 
@@ -391,8 +383,8 @@ lines(x_gaussian + sel, y_gaussian, col="blue", lwd=1.5, lty=2)  #
 
 # Add shading to a portion of the Gaussian distribution.
 up=which.min(abs(unlist(cc2[,3])-unlist(tar_data)))
-Dis_min=abs(cc2[up,3]-tar_data[,2])
-y_shaded <- seq(tar_data[,2]-Dis_min, tar_data[,2]+Dis_min, length.out = 50)  # limits
+Dis_min=abs(cc2[up,3]-tar_data[,1])
+y_shaded <- seq(tar_data[,1]-Dis_min, tar_data[,1]+Dis_min, length.out = 50)  # limits
 x_shaded <- dnorm(y_shaded, mean = mean_gaussian, sd = sd_gaussian)  # Calculate the Gaussian distribution value of the shaded region.
 x_shaded <- x_shaded / max(x_shaded) * 0.2  # justify the width
 polygon(c(x_shaded + sel, rep(sel, length(y_shaded))), c(y_shaded, rev(y_shaded)), col=rgb(0, 0, 1, 0.3), border = NA)  # add shadow
@@ -411,7 +403,7 @@ abline(h=unlist(tar_data), type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9
 ```
 
 ```r
-abline(h=tar_data[,2]+Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+abline(h=tar_data[,1]+Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
 ```
 
 ```
@@ -420,7 +412,7 @@ abline(h=tar_data[,2]+Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.p
 ```
 
 ```r
-abline(h=tar_data[,2]-Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
+abline(h=tar_data[,1]-Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.pal(9, "Oranges")[8], lwd=1, tck=0.01, font=2, font.lab=2, ylim=c(-1, 0.65), cex.axis=1.2, cex.lab=1.2)
 ```
 
 ```
@@ -429,10 +421,13 @@ abline(h=tar_data[,2]-Dis_min, type="l", lty=3, ylab="y", xlab="x", col=brewer.p
 ```
 
 ```r
-text(x = 0.02, y = tar_data[,2]+0.035, labels = "t", cex = 1, font=1.7)
-text(x = 0.04, y = tar_data[,2]+Dis_min+0.035, labels = "y_t.min", cex = 1, font=1.7)
-text(x = 0.05, y = tar_data[,2]-Dis_min+0.035, labels = "t-y_t.min", cex = 1, font=1.7)
+text(x = 0.02, y = tar_data[,1]+0.005, labels = "t", cex = 1.4, font=1.7)
+text(x = 0.04, y = tar_data[,1]+Dis_min+0.035, expression(y[t.min]), cex = 1.4, font=1.7)
+text(x = 0.08, y = tar_data[,1]-Dis_min-0.035, expression(t-y[t.min]),  cex = 1.4, font=1.7)
 ```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-2.png)
+<div class="figure">
+<img src="figure/unnamed-chunk-1-2.png" alt="plot of chunk unnamed-chunk-1" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-1</p>
+</div>
 
