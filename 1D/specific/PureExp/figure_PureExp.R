@@ -1,3 +1,6 @@
+knitr::opts_chunk$set(fig.width = 10, fig.height = 5.5,out.width="100%", dpi = 300)
+#print(knitr::opts_chunk$get("fig.width"))  # 
+#print(knitr::opts_chunk$get("fig.height"))  # 
 setwd("C:\\Users\\12758\\Desktop\\target_oriented_BO\\1D\\specific\\PureExp")
 library(RColorBrewer)
 
