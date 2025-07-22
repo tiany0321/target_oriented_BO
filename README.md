@@ -39,6 +39,8 @@ To test t-EGO, evaluations were conducted on some databases. The 1D/specific fol
 
 ## 4. Search for SMAs with target specific property
 
-# If you use this code please cite our paper:
+# Citation
 
-## Tian, Y., Li, T., Pang, J. et al. Materials design with target-oriented Bayesian optimization. npj Comput Mater 11, 209 (2025). https://doi.org/10.1038/s41524-025-01704-4
+### If you use this code please cite our paper:
+
+#### Tian, Y., Li, T., Pang, J. et al. Materials design with target-oriented Bayesian optimization. npj Comput Mater 11, 209 (2025). https://doi.org/10.1038/s41524-025-01704-4
